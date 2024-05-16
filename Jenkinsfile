@@ -4,10 +4,6 @@ pipeline {
     environment {
         GITHUB_REPO_URL = 'https://github.com/AbhishekRauthan909/speMajor.git'
     }
-    tools
-    {
-        dockerTool 'docker'
-    }
     
     stages {
         stage('Checkout') {
