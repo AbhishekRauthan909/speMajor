@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        GITHUB_REPO_URL = 'https://github.com/AbhishekRauthan909/scientific_calculator.git'
+        GITHUB_REPO_URL = 'https://github.com/AbhishekRauthan909/speMajor.git'
     }
     stages {
         stage('Checkout') {
@@ -24,7 +24,7 @@ pipeline {
                         dir('./speBackend') {
                             sh 'docker build -t abhishekrauthan2023106/music-backend .'
                         }
-                        dir('./speFrontend') {
+                        dir('./spe-frontend') {
                             sh 'docker build -t abhishekrauthan2023106/music-frontend .'
                         }
                     }
