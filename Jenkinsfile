@@ -1,10 +1,11 @@
 pipeline {
     agent any
+    
     environment {
         GITHUB_REPO_URL = 'https://github.com/AbhishekRauthan909/speMajor.git'
         MAVEN_HOME = '/opt/homebrew/opt/maven'
-
     }
+    
     stages {
         stage('Checkout') {
             steps {
@@ -14,30 +15,36 @@ pipeline {
                 }
             }
         }
+        
         stage('Maven Build') {
-                    steps {
-                                    dir('./speBackend') {
-                                        sh "${env.MAVEN_HOME}/bin/mvn clean install"
-                                    }
-                                }
+            steps {
+                dir('./speBackend') {
+                    sh "${env.MAVEN_HOME}/bin/mvn clean install"
                 }
-          stage('Build Docker Images') {
-                    steps {
-                        dir('./speBackend') {
-                                 docker.build('abhishekrauthan2023106/music-backend')
-                        }
-                        dir('./spe-frontend') {
-                              docker.build('abhishekrauthan2023106/music-frontend')
-}
+            }
+        }
+        
+        stage('Build Docker Images') {
+            steps {
+                script {
+                    // Use a script block to execute Docker Pipeline steps
+                    dir('./speBackend') {
+                        docker.build('abhishekrauthan2023106/music-backend')
+                    }
+                    dir('./spe-frontend') {
+                        docker.build('abhishekrauthan2023106/music-frontend')
                     }
                 }
+            }
+        }
+        
         stage('Push Docker Images') {
             steps {
                 script {
-                    // Tag and push Docker image to Docker Hub
+                    // Tag and push Docker images to Docker Hub
                     docker.withRegistry('', 'DockerHubCred') {
-                                         docker.image('abhishekrauthan2023106/music-backend').push('latest') 
-                                        docker.image('abhishekrauthan2023106/music-frontend').push('latest') 
+                        docker.image('abhishekrauthan2023106/music-backend').push('latest') 
+                        docker.image('abhishekrauthan2023106/music-frontend').push('latest') 
                     }
                 }
             }
