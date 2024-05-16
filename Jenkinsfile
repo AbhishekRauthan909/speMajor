@@ -2,6 +2,8 @@ pipeline {
     agent any
     environment {
         GITHUB_REPO_URL = 'https://github.com/AbhishekRauthan909/speMajor.git'
+        MAVEN_HOME = '/opt/homebrew/opt/maven'
+
     }
     stages {
         stage('Checkout') {
@@ -15,6 +17,7 @@ pipeline {
         stage('Maven Build') {
                     steps {
                                     dir('./speBackend') {
+                                        env.PATH = "${env.MAVEN_HOME}/bin:${env.PATH}"
                                         sh 'mvn clean install'
                                     }
                                 }
