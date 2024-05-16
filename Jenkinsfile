@@ -3,7 +3,6 @@ pipeline {
     
     environment {
         GITHUB_REPO_URL = 'https://github.com/AbhishekRauthan909/speMajor.git'
-        MAVEN_HOME = '/opt/homebrew/opt/maven'
     }
     tools
     {
@@ -23,7 +22,7 @@ pipeline {
         stage('Maven Build') {
             steps {
                 dir('./speBackend') {
-                    sh "${env.MAVEN_HOME}/bin/mvn clean install"
+                    sh "mvn clean install"
                 }
             }
         }
