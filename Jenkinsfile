@@ -29,10 +29,10 @@ pipeline {
                 script {
                     // Use a script block to execute Docker Pipeline steps
                     dir('./speBackend') {
-                        sh '/Applications/Docker.app/Contents/Resources/bin/docker build -t abhishekrauthan2023106/music-backend .'
+                        sh '/usr/local/bin/docker build -t abhishekrauthan2023106/music-backend .'
                     }
                     dir('./spe-frontend') {
-                        sh '/Applications/Docker.app/Contents/Resources/bin/docker build -t abhishekrauthan2023106/music-frontend .'
+                        sh '/usr/local/bin/docker build -t abhishekrauthan2023106/music-frontend .'
                     }
                 }
             }
