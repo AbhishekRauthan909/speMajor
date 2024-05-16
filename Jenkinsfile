@@ -5,6 +5,10 @@ pipeline {
         GITHUB_REPO_URL = 'https://github.com/AbhishekRauthan909/speMajor.git'
         MAVEN_HOME = '/opt/homebrew/opt/maven'
     }
+    tools
+    {
+        docker 'docker'
+    }
     
     stages {
         stage('Checkout') {
@@ -29,10 +33,10 @@ pipeline {
                 script {
                     // Use a script block to execute Docker Pipeline steps
                     dir('./speBackend') {
-                        sh '/usr/local/bin/docker build -t abhishekrauthan2023106/music-backend .'
+                        sh 'docker build -t abhishekrauthan2023106/music-backend .'
                     }
                     dir('./spe-frontend') {
-                        sh '/usr/local/bin/docker build -t abhishekrauthan2023106/music-frontend .'
+                        sh 'docker build -t abhishekrauthan2023106/music-frontend .'
                     }
                 }
             }
@@ -43,8 +47,8 @@ pipeline {
                 script {
                     // Tag and push Docker images to Docker Hub
                     docker.withRegistry('', 'DockerHubCred') {
-                        sh '/usr/local/bin/docker push abhishekrauthan2023106/music-backend'
-                        sh '/usr/local/bin/docker push abhishekrauthan2023106/music-frontend'
+                        sh 'docker push abhishekrauthan2023106/music-backend'
+                        sh 'docker push abhishekrauthan2023106/music-frontend'
                     }
                 }
             }
