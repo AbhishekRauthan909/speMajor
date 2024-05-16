@@ -36,8 +36,8 @@ pipeline {
                 script {
                     // Tag and push Docker image to Docker Hub
                     docker.withRegistry('', 'DockerHubCred') {
-                                        sh 'docker push abhishekrauthan2023106/music-backend'
-                                        sh 'docker push abhishekrauthan2023106/music-frontend'
+                                        sh '/Applications/Docker.app/Contents/Resources/bin/docker push abhishekrauthan2023106/music-backend'
+                                        sh '/Applications/Docker.app/Contents/Resources/bin/docker push abhishekrauthan2023106/music-frontend'
                     }
                 }
             }
