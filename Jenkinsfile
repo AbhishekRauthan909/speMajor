@@ -32,10 +32,10 @@ pipeline {
                 script {
                     // Use a script block to execute Docker Pipeline steps
                     dir('./speBackend') {
-                        sh 'docker build -t abhishekrauthan2023106/music-backend .'
+                        sh 'docker build -t nabaruniiitb/music-backend .'
                     }
                     dir('./spe-frontend') {
-                        sh 'docker build -t abhishekrauthan2023106/music-frontend .'
+                        sh 'docker build -t nabaruniiitb/music-frontend .'
                     }
                 }
             }
@@ -46,8 +46,8 @@ pipeline {
                 script {
                     // Tag and push Docker images to Docker Hub
                     docker.withRegistry('', 'DockerHubCred') {
-                        sh 'docker push abhishekrauthan2023106/music-backend'
-                        sh 'docker push abhishekrauthan2023106/music-frontend'
+                        sh 'docker push nabaruniiitb/music-backend'
+                        sh 'docker push nabaruniiitb/music-frontend'
                     }
                 }
             }
