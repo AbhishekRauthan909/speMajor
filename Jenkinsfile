@@ -24,11 +24,11 @@ pipeline {
           stage('Build Docker Images') {
                     steps {
                         dir('./speBackend') {
-                            sh 'docker build -t abhishekrauthan2023106/music-backend .'
+                                sh '/Applications/Docker.app/Contents/Resources/bin/docker build -t abhishekrauthan2023106/music-backend .'
                         }
                         dir('./spe-frontend') {
-                            sh 'docker build -t abhishekrauthan2023106/music-frontend .'
-                        }
+                             sh '/Applications/Docker.app/Contents/Resources/bin/docker build -t abhishekrauthan2023106/music-frontend .'
+}
                     }
                 }
         stage('Push Docker Images') {
