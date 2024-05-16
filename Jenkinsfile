@@ -17,8 +17,7 @@ pipeline {
         stage('Maven Build') {
                     steps {
                                     dir('./speBackend') {
-                                        env.PATH = "${env.MAVEN_HOME}/bin:${env.PATH}"
-                                        sh 'mvn clean install'
+                                        sh "${env.MAVEN_HOME}/bin/mvn clean install"
                                     }
                                 }
                 }
