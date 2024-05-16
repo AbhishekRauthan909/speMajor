@@ -24,10 +24,10 @@ pipeline {
           stage('Build Docker Images') {
                     steps {
                         dir('./speBackend') {
-                                sh '/Applications/Docker.app/Contents/Resources/bin/docker build -t abhishekrauthan2023106/music-backend .'
+                                 docker.build('abhishekrauthan2023106/music-backend')
                         }
                         dir('./spe-frontend') {
-                             sh '/Applications/Docker.app/Contents/Resources/bin/docker build -t abhishekrauthan2023106/music-frontend .'
+                              docker.build('abhishekrauthan2023106/music-frontend')
 }
                     }
                 }
@@ -36,8 +36,8 @@ pipeline {
                 script {
                     // Tag and push Docker image to Docker Hub
                     docker.withRegistry('', 'DockerHubCred') {
-                                         docker.build('abhishekrauthan2023106/music-backend').push()
-                                         docker.build('abhishekrauthan2023106/music-frontend').push()
+                                         docker.image('abhishekrauthan2023106/music-backend').push('latest') 
+                                        docker.image('abhishekrauthan2023106/music-frontend').push('latest') 
                     }
                 }
             }
